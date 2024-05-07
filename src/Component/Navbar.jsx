@@ -1,6 +1,9 @@
 import React from "react";
 
-const Navbar = () => {
+const Navbar = ({ setCategory }) => {
+  // Define an array of category names
+  const categories = ["technology", "business", "health", "sports", "entertainment"];
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
@@ -20,22 +23,15 @@ const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
-            <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
-                <span className="text-white">Home</span>
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                <span className="text-white">Features</span>
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                <span className="text-white">Pricing</span>
-              </a>
-            </li>
-           
+            {/* Use map to dynamically create navigation items */}
+            {categories.map((category, index) => (
+              <li className="nav-item" key={index}>
+                {/* onClick event handler to set the category */}
+                <div className="nav-link" onClick={() => setCategory(category.toLowerCase())} style={{ cursor: 'pointer' }}>
+                  {category}
+                </div>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
